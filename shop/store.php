@@ -1,5 +1,14 @@
 <?php
 require ("../head.html");
+require ("../user/navigation-bar.php");
+
+// if (isset($_SESSION['user_id'])) {
+  
+// } else {
+//     header("Location: ../index.html");
+//   exit();
+// }
+
 ?>
 
 <html lang="en">
@@ -7,14 +16,12 @@ require ("../head.html");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ShopPay</title>
+
 </head>
 <body>
-    <header>
-        <h1>Shop Pay</h1>
-        <a href="#" class="cart"><i class="fas fa-shopping-cart"></i></a>
-    </header>
+    
 
-    <div class="container">
+    <div class="store-container">
         <div class="item">
             <img src="../images/lenovo-1.jpg" alt="Product Image">
             <h2>Lenovo ThinkBook 13s</h2>
@@ -34,7 +41,6 @@ require ("../head.html");
             <button class="add-to-cart"><i class="fas fa-cart-plus"></i></button>
         </div>
     </div>
-
     <script src="../javascript/custom.js"></script>
 </body>
 </html>
