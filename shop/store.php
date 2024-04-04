@@ -1,7 +1,5 @@
 <?php
-
 require ("../head.html");
-
 ?>
 
 <html lang="en">
@@ -9,7 +7,6 @@ require ("../head.html");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ShopPay</title>
-    
 </head>
 <body>
     <header>
@@ -38,6 +35,6 @@ require ("../head.html");
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="../javascript/custom.js"></script>
 </body>
 </html>
