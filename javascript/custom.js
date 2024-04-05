@@ -23,14 +23,17 @@ function togglePasswordVisibility(fieldId, iconId) {
      }
    }
 
+   // Get the modal for shopping-cart
+   var modal_cart = document.getElementById('id02');
+   
+   window.onclick = function(event) {
+     if (event.target == modal_cart) {
+      modal_cart.style.display = "none";
+     }
+   }
 
 
-  //  logout 
-  function logoutConfirmation() {
-    var confirmLogout = confirm("Are you sure? You are about to logout.");
 
-    if (confirmLogout) {
-        // Redirect to the logout page
-        window.location.href = "logout.php";
-    }
-}
+
+
+

@@ -3,6 +3,7 @@ session_start();
 
 // Validate CSRF token
 if (isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
+    
     // Clear session variables
     $_SESSION = array();
 

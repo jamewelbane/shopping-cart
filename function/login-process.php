@@ -1,5 +1,5 @@
 <?php
-session_start(); 
+session_start();
 require("../database/connection.php");
 require("../function/user-function.php");
 
@@ -40,16 +40,23 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 } else {
                     // Incorrect password
                     show_generic_message("Login failed. Incorrect password.", "error");
+                    echo '<script type="text/javascript">';
+                    echo 'history.back();';
+                    echo '</script>';
                 }
             } else {
                 // No user found
                 show_generic_message("Login failed. Please check your credentials.", "error");
+                echo '<script type="text/javascript">';
+                echo 'history.back();';
+                echo '</script>';
             }
         } else {
             // Error preparing the statement
             show_generic_message("An error occurred. Please try again later.", "error");
+            echo '<script type="text/javascript">';
+            echo 'history.back();';
+            echo '</script>';
         }
     }
 }
-
-?>

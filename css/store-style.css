@@ -16,6 +16,7 @@ header {
     flex-wrap: wrap;
     justify-content: space-around;
     padding: 20px;
+    margin-top: 50%;
 }
 
 .item {

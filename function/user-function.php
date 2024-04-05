@@ -17,7 +17,6 @@ function check_login($link)
             $user_data = mysqli_fetch_assoc($result);
             $activeStat = $user_data['active'];
             
-           
         }
     }
 
@@ -28,7 +27,7 @@ function check_login($link)
 }
 
 function show_generic_message($message, $icon, $timer_duration = 2000) {
-    // Display a generic message to users without a button
+    
     echo '<script type="text/javascript">';
     echo 'document.addEventListener("DOMContentLoaded", function () {';
     echo 'alert("' . $message . '");';
