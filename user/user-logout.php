@@ -15,6 +15,7 @@ if (isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_toke
     exit();
 } else {
     // Invalid CSRF token, handle error or redirect
+    header("Location: ../shop/store.php");
     exit("Invalid CSRF token");
 }
 

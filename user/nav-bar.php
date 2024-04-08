@@ -16,7 +16,7 @@ $_SESSION['csrf_token'] = $csrf_token; // Store the token in the session
 
 <head>
     <meta charset="UTF-8">
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>
+    <!-- <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'> -->
     <link rel="stylesheet" href="../css/navigation-style.css">
 
 </head>
@@ -25,7 +25,7 @@ $_SESSION['csrf_token'] = $csrf_token; // Store the token in the session
 
 <body>
 
-    <nav>
+    <nav >
         <div class="wrapper">
             <div class="logo"><a href="../index.html">ShopPay</a></div>
             <input type="radio" name="slider" id="menu-btn">
@@ -53,7 +53,7 @@ $_SESSION['csrf_token'] = $csrf_token; // Store the token in the session
                             <a href="#" onclick="logoutConfirmation()">Logout</a>
                         </li>
                     </form>
-                    <li><a href="#" onclick="document.getElementById('id02').style.display='block'"><i class="fas fa-cart-plus"></i></a></li>
+                    <li><a href="#" id="cartButton" onclick="document.getElementById('id02').style.display='block'"><i class="fas fa-cart-plus"></i></a></li>
                 <?php endif; ?>
 
                 <?php
@@ -76,7 +76,7 @@ $_SESSION['csrf_token'] = $csrf_token; // Store the token in the session
     </div> -->
     <!-- partial -->
 
-</body>
+
 
 
 <script src="../javascript/custom.js"></script>
@@ -89,7 +89,7 @@ $_SESSION['csrf_token'] = $csrf_token; // Store the token in the session
         }
     }
 </script>
-
+</body>
 
 
 </html>
