@@ -72,3 +72,43 @@ header {
 .cart:hover {
     background-color: #777;
 }
+
+.quantity-input {
+    width: 30px;
+    /* Adjust the width as needed */
+    background-color: transparent;
+    border: none;
+    text-align: center;
+}
+
+/* Define the animation classes */
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+  }
+  
+  @keyframes bounce {
+    0% { transform: translateY(0); }
+    25% { transform: translateY(-5px); }
+    50% { transform: translateY(5px); }
+    75% { transform: translateY(-5px); }
+    100% { transform: translateY(0); }
+  }
+  
+  /* Apply animation class */
+  .animated {
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+  }
+  
+  .shake {
+    animation-name: shake;
+  }
+  
+  .bounce {
+    animation-name: bounce;
+  }
+  

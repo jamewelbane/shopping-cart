@@ -89,6 +89,7 @@ $_SESSION['csrf_token'] = $csrf_token; // Store the token in the session
         }
     }
 </script>
+
 </body>
 
 
