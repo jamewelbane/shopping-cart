@@ -63,7 +63,7 @@ require("../user/nav-bar.php");
 
 
     <script src="../javascript/custom.js"></script>
-    <script src="../javascript/cart.js"></script>
+    <!-- <script src="../javascript/cart.js"></script> -->
 
     <script>
         document.querySelectorAll('.add-to-cart').forEach(function(button) {

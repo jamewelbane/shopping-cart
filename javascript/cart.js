@@ -180,13 +180,24 @@ function deleteCartItem(productId) {
 // Function to close the cart modal
 function closeCartModal() {
     document.getElementById('id02').style.display = 'none';
+    fetchCartItems(); 
 }
+
+// Call the showCartModal function when the cart button is clicked
+document.addEventListener('DOMContentLoaded', function() {
+    var cartButton = document.getElementById('cartButton');
+    if (cartButton) {
+        cartButton.addEventListener('click', showCartModal);
+        fetchCartItems();
+    }
+});
 
 // Call the closeCartModal function when the close icon is clicked
 document.addEventListener('DOMContentLoaded', function() {
     var closeIcon = document.querySelector('.close-icon-cart');
     if (closeIcon) {
         closeIcon.addEventListener('click', closeCartModal);
+        fetchCartItems();
     }
 });
 
@@ -196,6 +207,7 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener("DOMContentLoaded", function () {
     // Get all Add to Cart buttons
     var addToCartButtons = document.querySelectorAll(".add-to-cart");
+    
 
     // Attach click event listener to each button
     addToCartButtons.forEach(function (button) {
@@ -216,8 +228,8 @@ document.addEventListener("DOMContentLoaded", function () {
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4 && xhr.status === 200) {
-                    // Handle the response here if needed
-                    console.log(xhr.responseText);
+                    // console.log(xhr.responseText);
+                    fetchCartItems();
                 }
             };
             xhr.send("product_id=" + productId + "&quantity=" + quantity); // Include quantity in the request
