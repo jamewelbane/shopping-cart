@@ -1,10 +1,10 @@
- // Function to update the quantity of a cart item using AJAX
- function updateQuantity(productId, quantity) {
+// Function to update the quantity of a cart item using AJAX
+function updateQuantity(productId, quantity) {
     var xhr = new XMLHttpRequest();
     var params = 'product_id=' + productId + '&quantity=' + quantity; // Construct the request parameters
     xhr.open('POST', '../function/update_cart_item.php', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
                 console.log(xhr.responseText); // Log the response to the console
@@ -21,8 +21,8 @@
 // Function to attach event listeners to quantity input fields
 function attachQuantityListeners() {
     var quantityInputs = document.querySelectorAll('.quantity-input');
-    quantityInputs.forEach(function(input) {
-        input.addEventListener('input', function(event) {
+    quantityInputs.forEach(function (input) {
+        input.addEventListener('input', function (event) {
             var productId = this.dataset.productId; // Retrieve productId from dataset attribute
             var newQuantity = this.value;
             // console.log("productId: ", productId); // Log productId to console for debugging
@@ -63,7 +63,7 @@ if (checkoutButton) {
 function fetchCartItems() {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', '../function/fetch_cart_items.php', true);
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             var cartItems = JSON.parse(xhr.responseText);
             var cartItemsContainer = document.getElementById('cartItemsContainer');
@@ -80,7 +80,7 @@ function fetchCartItems() {
                 cartItemsContainer.appendChild(emptyCartMessage);
             } else {
                 // Loop through cart items
-                cartItems.forEach(function(item) {
+                cartItems.forEach(function (item) {
                     var cartItemHtml = '<div class="cart-item">';
                     cartItemHtml += '<div class="cart-item-details">';
                     cartItemHtml += '<div class="product-info">';
@@ -118,7 +118,7 @@ function fetchCartItems() {
                 var checkoutButton = document.createElement('button');
                 checkoutButton.textContent = 'Checkout';
                 checkoutButton.className = 'checkout-btn';
-                checkoutButton.addEventListener('click', function() {
+                checkoutButton.addEventListener('click', function () {
                     // Call checkout function
                     checkout(totalAmount);
                 });
@@ -159,7 +159,7 @@ function deleteCartItem(productId) {
         var xhr = new XMLHttpRequest();
         xhr.open('POST', '../function/delete_cart_item.php', true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onreadystatechange = function() {
+        xhr.onreadystatechange = function () {
             fetchCartItems();
             if (xhr.readyState === 4 && xhr.status === 200) {
                 if (xhr.responseText === "success") {
@@ -177,16 +177,51 @@ function deleteCartItem(productId) {
 
 
 
-// Function to show the cart modal and fetch cart items
-function showCartModal() {
-    document.getElementById('id02').style.display = 'block';
-    fetchCartItems(); // Fetch cart items when the modal is displayed
+// Function to close the cart modal
+function closeCartModal() {
+    document.getElementById('id02').style.display = 'none';
 }
 
-// Call the showCartModal function when the cart button is clicked
+// Call the closeCartModal function when the close icon is clicked
 document.addEventListener('DOMContentLoaded', function() {
-    var cartButton = document.getElementById('cartButton');
-    if (cartButton) {
-        cartButton.addEventListener('click', showCartModal);
+    var closeIcon = document.querySelector('.close-icon-cart');
+    if (closeIcon) {
+        closeIcon.addEventListener('click', closeCartModal);
     }
 });
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Get all Add to Cart buttons
+    var addToCartButtons = document.querySelectorAll(".add-to-cart");
+
+    // Attach click event listener to each button
+    addToCartButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+            // Get the product ID associated with the button
+            var productId = button.getAttribute("data-product-id");
+
+            // Get the quantity input value
+            var quantityInput = button.parentNode.querySelector(".quantity-input");
+            var quantity = quantityInput.value || 1; // Set default quantity to 1 if not specified
+
+            // Log the quantity before sending the AJAX request
+            console.log("Quantity:", quantity);
+
+            // Send an AJAX request to add the product to the cart
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "../function/add_to_cart.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // Handle the response here if needed
+                    console.log(xhr.responseText);
+                }
+            };
+            xhr.send("product_id=" + productId + "&quantity=" + quantity); // Include quantity in the request
+        });
+    });
+});
+

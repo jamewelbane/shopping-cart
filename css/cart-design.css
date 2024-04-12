@@ -172,6 +172,13 @@ h1 {
     /* White text */
 }
 
+ .close-icon-cart {
+            margin-left: 97%;
+            font-size: 25px;
+            cursor: pointer;
+            color: black;
+            /* Adjust the color as needed */
+        }
 
 @-webkit-keyframes animatezoom {
     from {

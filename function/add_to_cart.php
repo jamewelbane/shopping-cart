@@ -10,6 +10,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $product_id = filter_var($_POST['product_id'], FILTER_SANITIZE_NUMBER_INT);
         $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
         $quantity = filter_var($_POST['quantity'], FILTER_SANITIZE_NUMBER_INT);
+        // Log the quantity
+        error_log("Quantity fetched: " . $quantity);
 
         // Check if the user is logged in
         if (!$user_id) {
@@ -42,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 mysqli_stmt_bind_param($update_stmt, "iii", $new_quantity, $user_id, $product_id);
                 if (mysqli_stmt_execute($update_stmt)) {
                     // Quantity updated successfully
-                    echo "Product quantity updated in the cart.";
+                    echo "Product quantity updated in the carted.";
                 } else {
                     // Error executing the statement
                     http_response_code(500); // Internal Server Error
@@ -64,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 mysqli_stmt_bind_param($insert_stmt, "iii", $user_id, $product_id, $quantity);
                 if (mysqli_stmt_execute($insert_stmt)) {
                     // Cart item added successfully
-                    echo "Product added to cart successfully.";
+                    echo "Product added to cart successfully. QUANTITY: $new_quantity";
                 } else {
                     // Error executing the statement
                     http_response_code(500); // Internal Server Error
@@ -87,4 +89,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     http_response_code(405); // Method Not Allowed
     echo "Method Not Allowed";
 }
-?>

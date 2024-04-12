@@ -10,10 +10,6 @@ session_start();
 require("../database/connection.php");
 require("../function/user-function.php");
 
-// if (isset($_SESSION['user_id'])) {
-//   header("Location: ../index.html");
-//   exit();
-// }
 
 ?>
 

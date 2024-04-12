@@ -11,66 +11,7 @@ require("../user/nav-bar.php");
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="" crossorigin="anonymous" />
     <title>ShopPay</title>
 
-    <style>
-        /* Define the animation classes */
-        @keyframes shake {
-            0% {
-                transform: translateX(0);
-            }
 
-            25% {
-                transform: translateX(-5px);
-            }
-
-            50% {
-                transform: translateX(5px);
-            }
-
-            75% {
-                transform: translateX(-5px);
-            }
-
-            100% {
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes bounce {
-            0% {
-                transform: translateY(0);
-            }
-
-            25% {
-                transform: translateY(-5px);
-            }
-
-            50% {
-                transform: translateY(5px);
-            }
-
-            75% {
-                transform: translateY(-5px);
-            }
-
-            100% {
-                transform: translateY(0);
-            }
-        }
-
-        /* Apply animation class */
-        .animated {
-            animation-duration: 0.5s;
-            animation-fill-mode: both;
-        }
-
-        .shake {
-            animation-name: shake;
-        }
-
-        .bounce {
-            animation-name: bounce;
-        }
-    </style>
 </head>
 
 <body>
@@ -122,40 +63,7 @@ require("../user/nav-bar.php");
 
 
     <script src="../javascript/custom.js"></script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Get all Add to Cart buttons
-            var addToCartButtons = document.querySelectorAll(".add-to-cart");
-
-            // Attach click event listener to each button
-            addToCartButtons.forEach(function(button) {
-                button.addEventListener("click", function() {
-                    // Get the product ID associated with the button
-                    var productId = button.getAttribute("data-product-id");
-
-                    // Get the quantity input value
-                    var quantityInput = button.parentNode.querySelector(".quantity-input");
-                    var quantity = quantityInput.value;
-
-                    // Send an AJAX request to add the product to the cart
-                    var xhr = new XMLHttpRequest();
-                    xhr.open("POST", "../function/add_to_cart.php", true);
-                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                    xhr.onreadystatechange = function() {
-                        if (xhr.readyState === 4 && xhr.status === 200) {
-                            // Handle the response here if needed
-                            console.log(xhr.responseText);
-                        }
-                    };
-                    var quantity = quantityInput.value; // Get the quantity input value
-                    xhr.send("product_id=" + productId + "&quantity=" + quantity); // Include quantity in the request
-
-                });
-            });
-        });
-    </script>
-
+    <script src="../javascript/cart.js"></script>
 
     <script>
         document.querySelectorAll('.add-to-cart').forEach(function(button) {

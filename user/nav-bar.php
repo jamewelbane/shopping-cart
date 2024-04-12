@@ -68,13 +68,6 @@ $_SESSION['csrf_token'] = $csrf_token; // Store the token in the session
 
 
 
-    <!-- body -->
-    <!-- <div class="body-text">
-        <div class="title"></div>
-        <div class="sub-title">
-        </div>
-    </div> -->
-    <!-- partial -->
 
 
 
