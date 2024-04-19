@@ -19,11 +19,6 @@ function check_login($link)
             
         }
     }
-
-    // User is not logged in, or the account does not exist
-    // 	unset($_SESSION['user_id']);
-    // header("Location: ../index.html");
-    // die;
 }
 
 function show_generic_message($message, $icon, $timer_duration = 2000) {

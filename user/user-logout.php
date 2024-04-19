@@ -7,10 +7,10 @@ if (isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_toke
     // Clear session variables
     $_SESSION = array();
 
-    // Destroy session
+
     session_destroy();
 
-    // Redirect to login page or home page
+    
     header("Location: ../shop/store.php");
     exit();
 } else {

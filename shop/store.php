@@ -36,7 +36,7 @@ require("../user/nav-bar.php");
 
                                 <button class="quantity-btn quantity-btn-decrease">-</button>
 
-                                <input class="quantity-input" value="1" min="1" readonly>
+                                <input class="quantity-input" value="1" min="1" max="10" readonly>
 
                                 <button class="quantity-btn quantity-btn-increase">+</button>
                             </div>
@@ -51,7 +51,7 @@ require("../user/nav-bar.php");
             // End of the store container
             echo '</div>';
 
-            mysqli_free_result($result); // Free the result set
+            mysqli_free_result($result); 
         } else {
             echo "Error fetching products: " . mysqli_error($link);
         }
@@ -63,18 +63,28 @@ require("../user/nav-bar.php");
 
 
     <script src="../javascript/custom.js"></script>
-    <!-- <script src="../javascript/cart.js"></script> -->
+   
 
     <script>
         document.querySelectorAll('.add-to-cart').forEach(function(button) {
             button.addEventListener('click', function() {
                 var isLoggedIn = <?php echo isset($_SESSION['user_id']) ? 'true' : 'false'; ?>;
+                var productId = this.dataset.productId;
+                var quantityElement = document.getElementById('quantity' + productId);
+                var currentQuantity = parseInt(quantityElement.textContent);
 
                 if (!isLoggedIn) {
                     // Add animation for not logged in
                     this.classList.add('animated', 'shake');
                     alert("You need to log in first");
                 } else {
+                    // Check if the quantity exceeds 10
+                    if (currentQuantity >= 10) {
+                        this.classList.add('animated', 'shake');
+                        alert("The maximum quantity allowed is 10. Your cart already contains the maximum allowed quantity.");
+                        return; // Exit the function if the quantity exceeds 10
+                    }
+
                     // Add animation for logged in
                     this.classList.add('animated', 'bounce');
                     alert("Added successfully");
@@ -87,19 +97,20 @@ require("../user/nav-bar.php");
             });
         });
     </script>
+
 </body>
 
 <script>
     // Get all quantity controls
     var quantityControls = document.querySelectorAll('.quantity-controls');
 
-    // Iterate over each quantity control
+
     quantityControls.forEach(function(control) {
         var input = control.querySelector('.quantity-input');
         var decreaseBtn = control.querySelector('.quantity-btn-decrease');
         var increaseBtn = control.querySelector('.quantity-btn-increase');
 
-        // Add event listener to decrease button
+      
         decreaseBtn.addEventListener('click', function() {
             var value = parseInt(input.value);
             if (value > 1) {
@@ -107,12 +118,15 @@ require("../user/nav-bar.php");
             }
         });
 
-        // Add event listener to increase button
+  
         increaseBtn.addEventListener('click', function() {
             var value = parseInt(input.value);
-            input.value = value + 1;
+            if (value < 10) {
+                input.value = value + 1;
+            }
         });
     });
 </script>
+
 
 </html>

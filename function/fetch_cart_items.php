@@ -1,10 +1,10 @@
 <?php
 session_start();
-require_once "../database/connection.php"; // Include your database connection file
+require_once "../database/connection.php"; 
 
-// Check if the user is logged in
+
 if (isset($_SESSION['user_id'])) {
-    // Prepare SQL query to fetch cart items
+   
     $query = "SELECT p.product_id, p.product_name, p.image_url, p.price, c.quantity FROM cart c
           INNER JOIN products p ON c.product_id = p.product_id
           WHERE c.user_id = ?";
@@ -12,7 +12,7 @@ if (isset($_SESSION['user_id'])) {
     $stmt = mysqli_prepare($link, $query);
 
     if ($stmt) {
-        // Bind user ID parameter and execute query
+     
         mysqli_stmt_bind_param($stmt, "i", $_SESSION['user_id']);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
@@ -33,8 +33,8 @@ if (isset($_SESSION['user_id'])) {
 
         mysqli_stmt_close($stmt);
     } else {
-        // Error preparing the statement
-        http_response_code(500); // Internal Server Error
+    
+        http_response_code(500);
         echo json_encode(["error" => "An error occurred while preparing the SQL statement."]);
     }
 } else {

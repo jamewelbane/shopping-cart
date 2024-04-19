@@ -1,20 +1,20 @@
-// Function to update the quantity of a cart item using AJAX
+// Function to update the quantity of a cart item 
 function updateQuantity(productId, quantity) {
     var xhr = new XMLHttpRequest();
-    var params = 'product_id=' + productId + '&quantity=' + quantity; // Construct the request parameters
+    var params = 'product_id=' + productId + '&quantity=' + quantity;
     xhr.open('POST', '../function/update_cart_item.php', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
-                console.log(xhr.responseText); // Log the response to the console
-                fetchCartItems(); // Fetch cart items again to update the display
+                console.log(xhr.responseText); 
+                fetchCartItems(); 
             } else {
                 console.error('Error updating cart item quantity:', xhr.status); // Log error to console
             }
         }
     };
-    xhr.send(params); // Send the request with the parameters
+    xhr.send(params); 
 }
 
 
@@ -49,7 +49,7 @@ function displayTotalAmount(total) {
 
 // Function to handle the checkout process
 function checkout() {
-    // Perform checkout process here, such as redirecting to a payment page
+    
     alert('Redirecting to payment page...');
 }
 
@@ -139,8 +139,10 @@ fetchCartItems();
 function increaseQuantity(productId) {
     var quantityElement = document.getElementById('quantity' + productId);
     var currentQuantity = parseInt(quantityElement.textContent);
-    quantityElement.textContent = currentQuantity + 1;
-    updateQuantity(productId, currentQuantity + 1);
+    if (currentQuantity < 10) {
+        quantityElement.textContent = currentQuantity + 1;
+        updateQuantity(productId, currentQuantity + 1);
+    }
 }
 
 function decreaseQuantity(productId) {
@@ -152,7 +154,8 @@ function decreaseQuantity(productId) {
     }
 }
 
-// Function to delete a cart item using AJAX
+
+// Function to delete a cart item
 function deleteCartItem(productId) {
     var confirmDelete = confirm("Are you sure you want to delete this item from your cart?");
     if (confirmDelete) {

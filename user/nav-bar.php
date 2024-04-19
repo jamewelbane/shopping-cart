@@ -8,8 +8,8 @@ if (isset($_SESSION['user_id'])) {
     $isLoggedIn = 0;
 }
 
-$csrf_token = bin2hex(random_bytes(32)); // Generate a random token
-$_SESSION['csrf_token'] = $csrf_token; // Store the token in the session
+$csrf_token = bin2hex(random_bytes(32)); 
+$_SESSION['csrf_token'] = $csrf_token; 
 ?>
 
 <html>
